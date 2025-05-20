@@ -73,6 +73,152 @@ console.log(tail); // [2, 3, 4]
 ```
 
 - `...tail` usa el **operador** rest para capturar los elementos restantes en un nuevo array.
+
+
+#### **1. Bucles (`for`, `while`, `for...of`)**
+
+##### a. Bucle `for` (como en Java):
+```javascript
+// Imprimir números del 0 al 4
+for (let i = 0; i < 5; i++) {
+  console.log(i); // 0, 1, 2, 3, 4
+}
+```
+
+##### b. Bucle `for...of` (para iterar arrays):
+```javascript
+const frutas = ["manzana", "banana", "uva"];
+
+// Equivalente a Python: for fruta in frutas:
+for (const fruta of frutas) {
+  console.log(fruta); // "manzana", "banana", "uva"
+}
+```
+
+##### c. Método `forEach` (para arrays):
+```javascript
+frutas.forEach((fruta, indice) => {
+  console.log(`Índice ${indice}: ${fruta}`);
+});
+// Salida:
+// Índice 0: manzana
+// Índice 1: banana
+// Índice 2: uva
+```
+
+---
+
+### **2. Arreglos Dinámicos**
+En JavaScript, los arrays son **dinámicos por defecto** (no tienen tamaño fijo, como en Python). Operaciones comunes:
+
+##### a. Añadir elementos:
+```javascript
+const numeros = [1, 2, 3];
+
+// Al final (como append en Python)
+numeros.push(4); // [1, 2, 3, 4]
+
+// Al inicio
+numeros.unshift(0); // [0, 1, 2, 3, 4]
+
+// En posición específica (splice)
+numeros.splice(2, 0, 1.5); // [0, 1, 1.5, 2, 3, 4]
+// splice(indice, elementos_a_eliminar, elementos_a_añadir)
+```
+
+##### b. Eliminar elementos:
+```javascript
+// Desde el final (como pop en Python)
+numeros.pop(); // [0, 1, 1.5, 2, 3]
+
+// Desde el inicio
+numeros.shift(); // [1, 1.5, 2, 3]
+
+// Desde posición específica
+numeros.splice(1, 1); // Elimina 1 elemento en índice 1 → [1, 2, 3]
+```
+
+##### c. Crear arrays dinámicos:
+```javascript
+// Array vacío
+const tareas = [];
+
+// Añadir elementos dinámicamente
+tareas.push("Estudiar JS");
+tareas.push("Hacer ejercicio");
+
+console.log(tareas); // ["Estudiar JS", "Hacer ejercicio"]
+```
+
+---
+
+#### **3. Métodos Útiles para Arrays**
+JavaScript tiene métodos similares a los de Python para manipular arrays:
+
+| Método     | Descripción                               | Ejemplo                          |
+|------------|-------------------------------------------|----------------------------------|
+| `map()`    | Crea un nuevo array transformando elementos | `numeros.map(n => n * 2)`       |
+| `filter()` | Filtra elementos según condición          | `numeros.filter(n => n > 2)`    |
+| `reduce()` | Reduce el array a un único valor          | `numeros.reduce((acc, n) => acc + n, 0)` |
+| `slice()`  | Copia una porción del array                | `numeros.slice(1, 3)`           |
+| `concat()` | Combina arrays                             | `numeros.concat([4, 5])`        |
+
+**Ejemplo avanzado con `map` + `filter`:**
+```javascript
+const numeros = [1, 2, 3, 4, 5];
+
+const paresDuplicados = numeros
+  .filter(n => n % 2 === 0) // [2, 4]
+  .map(n => n * 2); // [4, 8]
+
+console.log(paresDuplicados); // [4, 8]
+```
+
+---
+
+#### **4. Spread Operator (`...`) para Arrays**
+Útil para crear copias o mezclar arrays:
+```javascript
+const arr1 = [1, 2, 3];
+const arr2 = [4, 5];
+
+// Copiar un array
+const copia = [...arr1]; // [1, 2, 3]
+
+// Mezclar arrays
+const mezcla = [...arr1, ...arr2]; // [1, 2, 3, 4, 5]
+
+// Añadir elemento
+const nuevoArr = [...arr1, 4]; // [1, 2, 3, 4]
+```
+
+---
+
+#### **5. React y Arrays Dinámicos**
+En React, es común usar `map` para renderizar listas dinámicas:
+```javascript
+function ListaTareas() {
+  const tareas = ["Estudiar JS", "Hacer ejercicio", "Leer"];
+
+  return (
+    <ul>
+      {tareas.map((tarea, indice) => (
+        <li key={indice}>{tarea}</li>
+      ))}
+    </ul>
+  );
+}
+```
+
+---
+
+#### **Resumen**
+- **Bucles**: Usa `for`, `for...of`, o métodos como `forEach`.
+- **Arrays dinámicos**: Manipula con `push`, `pop`, `splice`, etc.
+- **Métodos funcionales**: `map`, `filter`, `reduce` (clave en React).
+- **Spread operator**: Para copiar o combinar arrays.
+
+
 ---
 
 ### 2. **Funciones Flecha (Fat Arrow Functions)**
@@ -280,6 +426,88 @@ async function obtenerDatos() {
 }
 ```
 
+#### Promesas (vs. Futures en Java y corrutinas en Python)
+
+#### **a. ¿Qué es una promesa?**
+Es un objeto que representa un valor que puede estar disponible ahora, en el futuro, o nunca. Se usa para operaciones asíncronas.
+
+#### **b. Estados de una promesa:**
+
+- **Pending:** En ejecución.
+- **Fulfilled:** Operación exitosa.
+- **Rejected:** Operación fallida.
+
+#### **c. Ejemplo con `fetch`:**
+
+```javascript
+const promesa = fetch("https://api.example.com/data");
+
+promesa
+  .then(response => response.json()) // Éxito
+  .then(data => console.log(data))
+  .catch(error => console.error(error)); // Fallo
+```
+#### **d. Comparación con Java/Python:**
+
+- Java (Future): Similar, pero con métodos como `.get()` (bloqueante).
+
+- Python (corrutinas): `Usan async/await` (similar a JS), pero en Python se manejan con `asyncio`.
+
+#### Teoría de `async/await`
+
+#### **a. ¿Qué es?**
+Es azúcar sintáctico sobre las promesas, haciendo el código asíncrono más legible (como si fuera síncrono).
+
+#### **b. Ejemplo:**
+```javascript
+async function obtenerDatos() {
+  try {
+    const response = await fetch("https://api.example.com/data");
+    const data = await response.json();
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+```
+#### **c. Reglas clave:**
+- `await` solo funciona dentro de funciones `async`.
+
+- Una función `async` siempre retorna una promesa.
+
+
+#### ¿Qué es `useEffect` y cuándo se ponen ";"?
+
+#### **a. `useEffect` en React:**
+Es un Hook que maneja efectos secundarios en componentes funcionales (como peticiones HTTP, suscripciones, etc.).
+
+**Ejemplo:**
+
+```javascript
+import { useEffect } from "react";
+
+function MiComponente() {
+  useEffect(() => {
+    // Código que se ejecuta después del renderizado
+    fetchData();
+    return () => {
+      // Cleanup (como desuscribirse de eventos)
+    };
+  }, []); // Array de dependencias (vacío = se ejecuta una vez)
+}
+```
+#### **b. ¿Cuándo usar ";"?**
+
+En JavaScript, los `;` son opcionales, pero se recomiendan en ciertos casos:
+
+- Evitar errores en líneas que empiezan con `[` o `(`.
+
+- Ejemplo problemático sin `;`:
+
+```javascript
+const x = 5
+[1, 2, 3].map(n => n * 2) // Error: Se interpreta como 5[1, 2, 3]...
+```
 ---
 
 ### 6. **React y JavaScript Moderno**
