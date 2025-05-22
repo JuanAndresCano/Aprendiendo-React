@@ -1,9 +1,10 @@
 import { ReactNode, useState } from "react";
+import Button from "./Button";
 
 type Props = {
   data: string[];
   onSelect?: (element: string) => void;
-  children: ReactNode;
+  //children: ReactNode;
 };
 
 function List({ data, onSelect }: Props) {
@@ -31,13 +32,12 @@ function List({ data, onSelect }: Props) {
           </li>
         ))}
       </ul>
-      <Button />
     </div>
   );
 }
 
 //Vamos a sacar lo del botón pues
-
+/** 
 interface ButtonProps {
   initialState?: boolean;
 }
@@ -59,6 +59,7 @@ export function Button({ initialState = true }: ButtonProps) {
     </button>
   );
 }
+  */
 
 export default List;
 

@@ -1,6 +1,7 @@
 import Card, { CardBody } from "./components/Card";
-import List, { Button } from "./components/List";
-
+import List from "./components/List";
+import Button from "./components/Button";
+import { useState } from "react";
 /**
  * truthy
  * falsy
@@ -16,6 +17,8 @@ function App() {
     console.log(`Este es el elemento mrk: ${element}`);
   };
 
+  const [isLoading, setIsLoading] = useState(false);
+  const handleClick = () => setIsLoading(!isLoading);
   /**
    * Renderizado condicional correcto
    */
@@ -32,7 +35,7 @@ function App() {
   //Forma 2 En esta no se muestra nada si la lista está vacía
 
   const content = list.length != 0 && (
-    <List data={list} onSelect={handleSelect} children={<Button />} />
+    <List data={list} onSelect={handleSelect} />
   );
 
   return (
@@ -40,9 +43,14 @@ function App() {
       {emptyListExample.length !== 0 && "My list"}
       <CardBody title="Hola mundo" text="Un petucheeeeee"></CardBody>
       {content}
-      <List data={list} onSelect={handleSelect2} children={<Button />} />
+      <List data={list} onSelect={handleSelect2} />
+      <Button isLoading={isLoading} onClick={handleClick}>
+        Hola Mundo
+      </Button>
     </Card>
   );
 }
 
 export default App;
+
+//children={<Button />}
