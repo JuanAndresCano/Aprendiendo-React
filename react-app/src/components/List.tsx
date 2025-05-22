@@ -35,3 +35,16 @@ function List({ data, onSelect }: Props) {
 }
 
 export default List;
+
+//State vs props
+
+//State:
+//Datos internos
+//Mutar
+
+//Props:
+//Argumentos
+//Inmutables
+
+//En común:
+//Re-render
