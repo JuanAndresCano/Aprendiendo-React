@@ -1,0 +1,42 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+# Dependencias y artefactos de compilación
+.env
+.env.local
+.env.*.local
+coverage/  # Si usas Jest para pruebas unitarias
+out/  # Directorio de salida si usas Next.js
+public  # En algunos casos si contiene archivos generados dinámicamente
+build/  # Otro posible directorio de compilación
+.cache  # Caché usada por algunos frameworks
+
+# Dependencias específicas de Vite
+.vite
+
+# Configuración específica de algunos editores
+.npm/
+.npmrc
+.eslintcache  # Caché de ESLint
+.stylelintcache  # Caché de Stylelint
