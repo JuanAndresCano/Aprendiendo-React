@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { ReactNode, useState } from "react";
 
 type Props = {
   data: string[];
   onSelect?: (element: string) => void;
+  children: ReactNode;
 };
 
 function List({ data, onSelect }: Props) {
@@ -30,7 +31,32 @@ function List({ data, onSelect }: Props) {
           </li>
         ))}
       </ul>
+      <Button />
     </div>
+  );
+}
+
+//Vamos a sacar lo del botón pues
+
+interface ButtonProps {
+  initialState?: boolean;
+}
+export function Button({ initialState = true }: ButtonProps) {
+  const [isActive, setIsActive] = useState(initialState);
+
+  const handleClick = () => {
+    setIsActive(false);
+  };
+  return (
+    <button
+      type="button"
+      className={`btn ${isActive ? "btn-primary" : "btn-secondary"}`}
+      onClick={handleClick}
+      disabled={!isActive}
+    >
+      {" "}
+      {isActive ? "Click" : "Tuki"}
+    </button>
   );
 }
 

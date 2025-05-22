@@ -1,5 +1,5 @@
 import Card, { CardBody } from "./components/Card";
-import List from "./components/List";
+import List, { Button } from "./components/List";
 
 /**
  * truthy
@@ -32,7 +32,7 @@ function App() {
   //Forma 2 En esta no se muestra nada si la lista está vacía
 
   const content = list.length != 0 && (
-    <List data={list} onSelect={handleSelect} />
+    <List data={list} onSelect={handleSelect} children={<Button />} />
   );
 
   return (
@@ -40,7 +40,7 @@ function App() {
       {emptyListExample.length !== 0 && "My list"}
       <CardBody title="Hola mundo" text="Un petucheeeeee"></CardBody>
       {content}
-      <List data={list} onSelect={handleSelect2} />
+      <List data={list} onSelect={handleSelect2} children={<Button />} />
     </Card>
   );
 }
