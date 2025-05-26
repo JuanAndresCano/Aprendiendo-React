@@ -1,9 +1,11 @@
 # Nivelación JavaScript para React
 
 ### 1. **Sintaxis Básica de JavaScript (vs. Java/Python)**
+
 JavaScript tiene similitudes con Java y Python, pero con diferencias clave, pues js es un lenguaje de tipado dinámico:
 
 #### Variables:
+
 - `let`: Variable que puede cambiar (como `int x = 5` en Java).
 - `const`: Constante (no puede reasignarse).
 
@@ -16,8 +18,9 @@ const PI = 3.1416; // Constante
 
 ```javascript
 let valor = "Hola"; // String
-valor = 42;         // Ahora es number (válido)
+valor = 42; // Ahora es number (válido)
 ```
+
 - Desventaja: Mayor riesgo de errores (por eso se usa TypeScript en proyectos grandes).
 
 #### Trabajo con Strings.
@@ -29,14 +32,15 @@ const nombre = "Ana";
 const saludo = `Hola, ${nombre}. 
 Tienes ${25 + 5} años.`; // Multilínea e interpolación
 ```
-- Interpolación: Insertar variables con `${}`. 
+
+- Interpolación: Insertar variables con `${}`.
 
 - **Métodos útiles:**
 
 ```javascript
-"React".startsWith("R");    // true
-"JavaScript".includes("va");// true
-"  texto  ".trim();         // "texto"
+"React".startsWith("R"); // true
+"JavaScript".includes("va"); // true
+"  texto  ".trim(); // "texto"
 ```
 
 #### Arreglos:
@@ -47,7 +51,7 @@ JavaScript tiene métodos similares a los de Python:
 const numeros = [1, 2, 3];
 
 // Métodos comunes:
-numeros.map((num) => num * 2);    // [2, 4, 6] (como list comprehensions)
+numeros.map((num) => num * 2); // [2, 4, 6] (como list comprehensions)
 numeros.filter((num) => num > 1); // [2, 3]
 numeros.find((num) => num === 2); // 2
 
@@ -57,7 +61,6 @@ const nuevosNumeros = [...numeros, 4, 5]; // [1, 2, 3, 4, 5]
 // Desestructuración:
 const [primero, segundo] = numeros;
 console.log(primero); // 1
-
 
 const numeros = [1, 2, 3, 4];
 
@@ -74,10 +77,10 @@ console.log(tail); // [2, 3, 4]
 
 - `...tail` usa el **operador** rest para capturar los elementos restantes en un nuevo array.
 
-
 #### **1. Bucles (`for`, `while`, `for...of`)**
 
 ##### a. Bucle `for` (como en Java):
+
 ```javascript
 // Imprimir números del 0 al 4
 for (let i = 0; i < 5; i++) {
@@ -86,6 +89,7 @@ for (let i = 0; i < 5; i++) {
 ```
 
 ##### b. Bucle `for...of` (para iterar arrays):
+
 ```javascript
 const frutas = ["manzana", "banana", "uva"];
 
@@ -96,6 +100,7 @@ for (const fruta of frutas) {
 ```
 
 ##### c. Método `forEach` (para arrays):
+
 ```javascript
 frutas.forEach((fruta, indice) => {
   console.log(`Índice ${indice}: ${fruta}`);
@@ -109,9 +114,11 @@ frutas.forEach((fruta, indice) => {
 ---
 
 ### **2. Arreglos Dinámicos**
+
 En JavaScript, los arrays son **dinámicos por defecto** (no tienen tamaño fijo, como en Python). Operaciones comunes:
 
 ##### a. Añadir elementos:
+
 ```javascript
 const numeros = [1, 2, 3];
 
@@ -127,6 +134,7 @@ numeros.splice(2, 0, 1.5); // [0, 1, 1.5, 2, 3, 4]
 ```
 
 ##### b. Eliminar elementos:
+
 ```javascript
 // Desde el final (como pop en Python)
 numeros.pop(); // [0, 1, 1.5, 2, 3]
@@ -139,6 +147,7 @@ numeros.splice(1, 1); // Elimina 1 elemento en índice 1 → [1, 2, 3]
 ```
 
 ##### c. Crear arrays dinámicos:
+
 ```javascript
 // Array vacío
 const tareas = [];
@@ -153,23 +162,25 @@ console.log(tareas); // ["Estudiar JS", "Hacer ejercicio"]
 ---
 
 #### **3. Métodos Útiles para Arrays**
+
 JavaScript tiene métodos similares a los de Python para manipular arrays:
 
-| Método     | Descripción                               | Ejemplo                          |
-|------------|-------------------------------------------|----------------------------------|
-| `map()`    | Crea un nuevo array transformando elementos | `numeros.map(n => n * 2)`       |
-| `filter()` | Filtra elementos según condición          | `numeros.filter(n => n > 2)`    |
-| `reduce()` | Reduce el array a un único valor          | `numeros.reduce((acc, n) => acc + n, 0)` |
-| `slice()`  | Copia una porción del array                | `numeros.slice(1, 3)`           |
-| `concat()` | Combina arrays                             | `numeros.concat([4, 5])`        |
+| Método     | Descripción                                 | Ejemplo                                  |
+| ---------- | ------------------------------------------- | ---------------------------------------- |
+| `map()`    | Crea un nuevo array transformando elementos | `numeros.map(n => n * 2)`                |
+| `filter()` | Filtra elementos según condición            | `numeros.filter(n => n > 2)`             |
+| `reduce()` | Reduce el array a un único valor            | `numeros.reduce((acc, n) => acc + n, 0)` |
+| `slice()`  | Copia una porción del array                 | `numeros.slice(1, 3)`                    |
+| `concat()` | Combina arrays                              | `numeros.concat([4, 5])`                 |
 
 **Ejemplo avanzado con `map` + `filter`:**
+
 ```javascript
 const numeros = [1, 2, 3, 4, 5];
 
 const paresDuplicados = numeros
-  .filter(n => n % 2 === 0) // [2, 4]
-  .map(n => n * 2); // [4, 8]
+  .filter((n) => n % 2 === 0) // [2, 4]
+  .map((n) => n * 2); // [4, 8]
 
 console.log(paresDuplicados); // [4, 8]
 ```
@@ -177,7 +188,9 @@ console.log(paresDuplicados); // [4, 8]
 ---
 
 #### **4. Spread Operator (`...`) para Arrays**
+
 Útil para crear copias o mezclar arrays:
+
 ```javascript
 const arr1 = [1, 2, 3];
 const arr2 = [4, 5];
@@ -195,7 +208,9 @@ const nuevoArr = [...arr1, 4]; // [1, 2, 3, 4]
 ---
 
 #### **5. React y Arrays Dinámicos**
+
 En React, es común usar `map` para renderizar listas dinámicas:
+
 ```javascript
 function ListaTareas() {
   const tareas = ["Estudiar JS", "Hacer ejercicio", "Leer"];
@@ -213,18 +228,20 @@ function ListaTareas() {
 ---
 
 #### **Resumen**
+
 - **Bucles**: Usa `for`, `for...of`, o métodos como `forEach`.
 - **Arrays dinámicos**: Manipula con `push`, `pop`, `splice`, etc.
 - **Métodos funcionales**: `map`, `filter`, `reduce` (clave en React).
 - **Spread operator**: Para copiar o combinar arrays.
 
-
 ---
 
 ### 2. **Funciones Flecha (Fat Arrow Functions)**
+
 Son una forma corta de escribir funciones en JavaScript. Se usan mucho en React.
 
 #### Ejemplo vs. Python/Java:
+
 - **JavaScript (Arrow Function):**
   ```javascript
   const sumar = (a, b) => a + b;
@@ -232,6 +249,7 @@ Son una forma corta de escribir funciones en JavaScript. Se usan mucho en React.
 - Equivalente en Python: `sumar = lambda a, b: a + b`
 
 #### Características:
+
 - **`this` léxico**: No crea su propio `this` (a diferencia de funciones normales).
 - **Implícito**: Si es una línea, el `return` es automático.
 
@@ -242,7 +260,7 @@ function duplicar(x) {
 }
 
 // Arrow function equivalente
-const duplicar = x => x * 2;
+const duplicar = (x) => x * 2;
 ```
 
 #### Sintaxis Multilinea:
@@ -255,7 +273,6 @@ const sumarYDuplicar = (a, b) => {
   return suma * 2;
 };
 ```
-
 
 #### Beneficios en React:
 
@@ -285,12 +302,15 @@ class Componente extends React.Component {
   };
 }
 ```
+
 ---
 
 ### 3. **Clases en JavaScript**
+
 Similar a Java, pero con diferencias en herencia y sintaxis.
 
 #### Definición:
+
 ```javascript
 class Persona {
   constructor(nombre) {
@@ -308,12 +328,12 @@ class Persona {
 
 const juan = new Persona(" Juan ");
 console.log(juan.nombre); // "JUAN" (usa el getter)
-juan.nombre = "  Ana  ";   // Setter elimina espacios
+juan.nombre = "  Ana  "; // Setter elimina espacios
 console.log(juan.nombre); // "ANA"
 ```
 
-
 #### Herencia:
+
 ```javascript
 class Estudiante extends Persona {
   constructor(nombre, edad, curso) {
@@ -329,11 +349,12 @@ class Estudiante extends Persona {
 const ana = new Estudiante("Ana", 22, "React");
 ana.estudiar(); // "Ana estudia React"
 ```
- Al igual que Java, JS no soporta herenca múltiple. Sin embargo, se puede usar **herencia prototipal** (Los objetos heredan de otrros objetos).
 
- - Alternativa: Usar mixins (patrón de diseño) para simular herencia múltiple:
+Al igual que Java, JS no soporta herenca múltiple. Sin embargo, se puede usar **herencia prototipal** (Los objetos heredan de otrros objetos).
 
- ```javascript
+- Alternativa: Usar mixins (patrón de diseño) para simular herencia múltiple:
+
+```javascript
 const habilidadesMixins = {
   programar() {
     console.log("Programando...");
@@ -354,13 +375,14 @@ juan.programar(); // "Programando..."
 
 #### Interfaces:
 
-JavaScript no tiene interfaces nativas (como Java o TypeScript), pero puedes simularlas con validaciones manuales o usar TypeScript (recomendado en proyectos grandes).
----
+## JavaScript no tiene interfaces nativas (como Java o TypeScript), pero puedes simularlas con validaciones manuales o usar TypeScript (recomendado en proyectos grandes).
 
 ### 4. **Alcance (Scope)**
+
 JavaScript tiene **scope léxico**: las variables existen dentro del bloque donde se definen (`{}`).
 
 #### Ejemplo:
+
 ```javascript
 let x = 10; // Variable global
 
@@ -390,30 +412,34 @@ if (true) {
 }
 console.log(x); // 10 (¡var es accesible fuera del bloque!)
 ```
+
 - Hoisting: Las variables `var` se "elevan" al inicio de la función (se declaran, pero no se inicializan):
 
 ```javascript
 console.log(y); // undefined (no da error)
 var y = 5;
 ```
-- Razón para usar let/const:
-`let`/`const` evitan estos comportamientos, limitando el scope al bloque y previniendo errores.
 
+- Razón para usar let/const:
+  `let`/`const` evitan estos comportamientos, limitando el scope al bloque y previniendo errores.
 
 ---
 
 ### 5. **Fetch API (Para peticiones HTTP)**
+
 Es el método moderno para hacer llamadas a APIs en JavaScript. Retorna una **promesa** (similar a `Future` en Java o corrutinas en Python).
 
 #### Ejemplo Básico:
+
 ```javascript
 fetch("https://api.example.com/data")
-  .then(response => response.json()) // Convierte la respuesta a JSON
-  .then(data => console.log(data))
-  .catch(error => console.error("Error:", error));
+  .then((response) => response.json()) // Convierte la respuesta a JSON
+  .then((data) => console.log(data))
+  .catch((error) => console.error("Error:", error));
 ```
 
 #### Con Async/Await (Más legible):
+
 ```javascript
 async function obtenerDatos() {
   try {
@@ -429,6 +455,7 @@ async function obtenerDatos() {
 #### Promesas (vs. Futures en Java y corrutinas en Python)
 
 #### **a. ¿Qué es una promesa?**
+
 Es un objeto que representa un valor que puede estar disponible ahora, en el futuro, o nunca. Se usa para operaciones asíncronas.
 
 #### **b. Estados de una promesa:**
@@ -443,10 +470,11 @@ Es un objeto que representa un valor que puede estar disponible ahora, en el fut
 const promesa = fetch("https://api.example.com/data");
 
 promesa
-  .then(response => response.json()) // Éxito
-  .then(data => console.log(data))
-  .catch(error => console.error(error)); // Fallo
+  .then((response) => response.json()) // Éxito
+  .then((data) => console.log(data))
+  .catch((error) => console.error(error)); // Fallo
 ```
+
 #### **d. Comparación con Java/Python:**
 
 - Java (Future): Similar, pero con métodos como `.get()` (bloqueante).
@@ -456,9 +484,11 @@ promesa
 #### Teoría de `async/await`
 
 #### **a. ¿Qué es?**
+
 Es azúcar sintáctico sobre las promesas, haciendo el código asíncrono más legible (como si fuera síncrono).
 
 #### **b. Ejemplo:**
+
 ```javascript
 async function obtenerDatos() {
   try {
@@ -470,15 +500,17 @@ async function obtenerDatos() {
   }
 }
 ```
+
 #### **c. Reglas clave:**
+
 - `await` solo funciona dentro de funciones `async`.
 
 - Una función `async` siempre retorna una promesa.
 
-
 #### ¿Qué es `useEffect` y cuándo se ponen ";"?
 
 #### **a. `useEffect` en React:**
+
 Es un Hook que maneja efectos secundarios en componentes funcionales (como peticiones HTTP, suscripciones, etc.).
 
 **Ejemplo:**
@@ -496,6 +528,7 @@ function MiComponente() {
   }, []); // Array de dependencias (vacío = se ejecuta una vez)
 }
 ```
+
 #### **b. ¿Cuándo usar ";"?**
 
 En JavaScript, los `;` son opcionales, pero se recomiendan en ciertos casos:
@@ -505,14 +538,16 @@ En JavaScript, los `;` son opcionales, pero se recomiendan en ciertos casos:
 - Ejemplo problemático sin `;`:
 
 ```javascript
-const x = 5
-[1, 2, 3].map(n => n * 2) // Error: Se interpreta como 5[1, 2, 3]...
+const x = (5)[(1, 2, 3)].map((n) => n * 2); // Error: Se interpreta como 5[1, 2, 3]...
 ```
+
 ---
 
 ### 6. **React y JavaScript Moderno**
+
 - **Componentes Funcionales**: En React moderno se usan funciones con **Hooks** (no clases).
 - **Arrow Functions + Fetch**:
+
   ```javascript
   import { useEffect } from "react";
 
@@ -533,6 +568,36 @@ const x = 5
 ---
 
 ### Próximos Pasos:
+
 - Practica creando funciones y clases en JavaScript.
 - Juega con el Fetch API en [JSONPlaceholder](https://jsonplaceholder.typicode.com/).
 
+### Nuevos Operadores Aprendidos:
+
+#### 1. `!!` Doble negación:
+
+```typescript
+let user = null;
+console.log(!!user); // false
+
+user = { name: "John" };
+console.log(!!user); // true
+```
+
+#### 2. `?.` Optional Chaining:
+
+```typescript
+let user = null;
+console.log(user?.name); // undefined (sin error)
+
+user = { name: "John" };
+console.log(user?.name); // "John"
+```
+
+#### 3. `?` Operador ternario:
+
+```typescript
+// condición ? valor si verdadero : valor si falso
+const edad = 20;
+const mensaje = edad >= 18 ? "Adulto" : "Menor";
+```
